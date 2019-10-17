@@ -8,6 +8,9 @@ class APKPuller():
 		self.client = adb(host="127.0.0.1", port=5037)
 		devices = self.client.devices()
 		devicelist = ""
+		if not devices:
+			print("\033[1mNo devices found")
+			exit()
 		for count,d in enumerate(devices):
 			devicelist += str(count + 1) + ". " + str(d) + "\n"
 		device = input(devicelist + "\033[1mChoose device: ")
