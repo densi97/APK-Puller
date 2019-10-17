@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from ppadb.client import Client as adb
+import os
 
 class APKPuller():
 
@@ -49,7 +50,8 @@ class APKPuller():
 
 	def pull_apk(self, package_name: str):
 		path = self.device.shell("pm path " + package_name)
-		self.device.pull(path, package_name + ".apk")
+		cwd = os.getcwd()
+		self.device.pull(path, os.path.join(cwd,package_name + ".apk"))
 
 		
 if __name__ == '__main__':
